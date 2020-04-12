@@ -7,6 +7,9 @@ const expressLayouts = require('express-ejs-layouts');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 
+//__________MONGOdb setup___________________
+const db = require('./config/mongoose'); //mongoose
+const User = require('./models/user'); //user Model
 
 //__________EXPRESS setup___________________
 const app = express();
