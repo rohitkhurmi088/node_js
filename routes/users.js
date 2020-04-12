@@ -8,9 +8,11 @@ const passport = require('passport');
 
 //__________________profile (Authorization)___________________________
 const usersController = require('../controller/users_controller');
+//making profile page accessible only when user is signed-in(Authenticated)
+//passport.checkAuthentication:Middleware in config-->passport-local-strategy.js
 
 //**** Display: GET Profile ****/
-router.get('/profile', usersController.profile);
+router.get('/profile',passport.checkAuthentication, usersController.profile);
 
 
 /*
