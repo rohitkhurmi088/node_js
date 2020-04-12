@@ -70,6 +70,14 @@ module.exports.create = (req, res) => {
 };
 //_____________________________________________________________________________
 
+//________________________________________________________________________
+//signIn existing user + create-session (Login)
+//________________________________________________________________________
+module.exports.createSession = (req, res) => {
+    
+	//redirect to Homepage
+	return res.redirect('/');
+};
 
 
 

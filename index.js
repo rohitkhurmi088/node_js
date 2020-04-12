@@ -11,6 +11,14 @@ const bodyParser = require('body-parser');
 const db = require('./config/mongoose'); //mongoose
 const User = require('./models/user'); //user Model
 
+//Passport Authentication used for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+
+//MongoStore :: uses connect-mongo to save session-info into database
+const MongoStore = require('connect-mongo')(session);
+
 //__________EXPRESS setup___________________
 const app = express();
 // turn off limits by default (BE CAREFUL)
@@ -30,7 +38,7 @@ app.use(express.urlencoded({ extended:false })); //form data
  puts the cookie information on req object in the middleware.
  It will also decrypt signed cookies provided you know the secret.*/
  app.use(cookieParser());
- 
+
 //------------TEMPELATE ENGINE:: EJS--------------------//
 //including css-static files(assets)
 app.use(express.static('assets'));
@@ -46,6 +54,40 @@ app.set('layout extractScripts',true);
 app.set('view engine', 'ejs');
 //app.set('views', path.join(__dirname,'views'));
 app.set('views', './views');
+
+//----------------MONGOSTORE + Express-session-----------------//
+//MongoStore is used to store the session cookie in the db
+
+//::: express-session :::
+app.use(session({
+    name:'social',
+    // TO-DO change the secret before deployment in production mode
+   //encryption key-code/decode
+    secret:'node_web',
+    saveUninitialized:false,
+    resave:false,
+    cookie:{
+        maxAge:(1000 * 60* 100) //in millisec
+    },
+    store: new MongoStore(
+        {
+            //connect MongoStore with db
+            mongooseConnection: db,
+            autoRemove: 'disabled'
+        }, 
+        function(err){
+            console.log(err || 'connect-mongo setup was ok');
+        } 
+    )
+}));
+
+//maintaining sessions using passport
+//passport :: also helps in maintaining sessions
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 
 //__________RENDER EJS templates___________________
 /* templates renderd using controllers via router
