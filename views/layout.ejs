@@ -27,10 +27,11 @@
     <!--Main-Content-section-->
     <main id="layout-main">
         <%- body %> <!--other ejs files executes as body-->
+        <!--Footer-->
+    <%- include('./partials/_footer.ejs'); %>
     </main>
 
-     <!--Footer-->
-     <%- include('./partials/_footer.ejs'); %>
+    
      
     <!--Scriptsfrom other ejsfiles-->
     <%- script %>

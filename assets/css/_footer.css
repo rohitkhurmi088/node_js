@@ -3,11 +3,7 @@
   background: grey;
   padding: 5px 10px;
   display: flex;
-  justify-content: flex-start;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%; }
+  justify-content: flex-start; }
   #layout-footer a {
     color: white;
     text-decoration: none; }

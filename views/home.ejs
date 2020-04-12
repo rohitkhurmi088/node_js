@@ -9,28 +9,55 @@
     <!-- Create Form Posts/comments on Homepage -->
     <!--____________________________________-->
     <section id="feed-posts">
+        <h4>Posts</h4>
         <!--_____________________________________-->
              <!--FORM to create Posts-->
         <!--____________________________________-->
+        
             <form action="/posts/create" id="new-post-form" method="POST">
                 <!-- (textarea for content /not users) -->
                 <textarea name="content" rows="3" cols="30" placeholder="Type Here..." required></textarea>
                 <input type="submit" value="Post">
             </form>
+        
+    
+        <!--_____________________________________-->
+               <!--POSTING Content-->
+        <!--____________________________________-->
+        <div id="posts-list-container">
+            <ul>
+                <% for(post of posts){ %>
+                <!--including _post-partials from folder: homepartials-->
+                <!--Add id to post list item(used for deleting li)
+                id="post-<%post._id%>" in the view(template)- it does not matter if you are using
+                .id or _.id (if you are displaying),unless you are comparing -->
+                    <li id="post-<%=post._id%>">
+                        <p>
+                            <!--_____________________________________-->
+                            <!--Showing Posts + UserName-->
+                            <!--____________________________________-->
+                            <%= post.content %>
+                            <!--Without Populating--> 
+                            <!--Note:: <%=post.user%> : shows user _id :not name-->
+                            <!--with Populating 'user' object-->
+                            <br>
+                            <Small> <%= post.user.name %> </Small>
+                        </p>
+                    <% } %>
+            </ul>
+        </div>
 
-
-    </section>
-
-
+    </Section>
+    
+     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - >
     <!--___________________________________________________-->
     <!-- Display list of All the users from home_controller -->
     <!--___________________________________________________-->
-    <Section id="user-friends">
-        
-
-    </Section>
-
-
-
+    <section id = "user-friends">
+        <h4>Friends</h4>
+     
+    </section>
 </div>
+
+
 
