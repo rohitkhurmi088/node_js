@@ -13,13 +13,19 @@
         <!--_____________________________________-->
              <!--FORM to create Posts-->
         <!--____________________________________-->
+        <!-- Making Form to create Post: visibe to only Signed-in Users
+        User will be able to only read Posts before Signed-in-->
+        <!--1st at local level -> locals.user (only signed in user should be able to see the Form to Post)-->
         
+        <% if(locals.user){ %>
+            <!--Note:FORM action="router action"-->
+            <!-- id="new-post-form" for AJAX-->
             <form action="/posts/create" id="new-post-form" method="POST">
                 <!-- (textarea for content /not users) -->
                 <textarea name="content" rows="3" cols="30" placeholder="Type Here..." required></textarea>
                 <input type="submit" value="Post">
             </form>
-        
+        <%}%>
     
         <!--_____________________________________-->
                <!--POSTING Content-->
