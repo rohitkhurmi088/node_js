@@ -3,5 +3,34 @@
 <h1>HomePage</h1>
 
 
+<div id="home-container">
+    
+     <!--____________________________________-->
+    <!-- Create Form Posts/comments on Homepage -->
+    <!--____________________________________-->
+    <section id="feed-posts">
+        <!--_____________________________________-->
+             <!--FORM to create Posts-->
+        <!--____________________________________-->
+            <form action="/posts/create" id="new-post-form" method="POST">
+                <!-- (textarea for content /not users) -->
+                <textarea name="content" rows="3" cols="30" placeholder="Type Here..." required></textarea>
+                <input type="submit" value="Post">
+            </form>
 
+
+    </section>
+
+
+    <!--___________________________________________________-->
+    <!-- Display list of All the users from home_controller -->
+    <!--___________________________________________________-->
+    <Section id="user-friends">
+        
+
+    </Section>
+
+
+
+</div>
 
