@@ -3,12 +3,27 @@
 const User =require('../models/user');
 
 //_____________________________________
-// Display Profile :GET
+// Display Profile :GET(ONLY to Authenticated Users)
 //_____________________________________
 module.exports.profile = ('/profile', (req,res)=>{
-    return res.render('profile',{
-        title:'Homepage'
-    });
+
+    //CHECK if cookies are present
+    if(req.cookies.user_id){
+        //find user- Model.findById() or Model.findOne()
+        User.findById(req.cookies.user_id, (err,user)=>{
+            //if user is not found - Goto Profile
+            if(user){
+                return res.render('profile', {
+                    title:'UserProfile',
+                    user:user
+                });
+            }
+            //if user is not found Goto signIn page again
+            return res.redirect('/users/sign-in');
+        });
+    }else{
+        return res.redirect('/users/sign-in');
+    }
 });
 
 
