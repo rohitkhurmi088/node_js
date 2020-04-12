@@ -1,5 +1,5 @@
 const express = require('express');
-
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const PORT = process.env.PORT || 6001;
 
@@ -24,7 +24,13 @@ require('events').EventEmitter.prototype._MaxListeners=0;
 app.use(express.json()); //json data
 app.use(express.urlencoded({ extended:false })); //form data
 
-
+//----------COOKIE-PARSER-----------------------//
+//::: cookie-parser :::
+/*The cookie parser parses cookies and
+ puts the cookie information on req object in the middleware.
+ It will also decrypt signed cookies provided you know the secret.*/
+ app.use(cookieParser());
+ 
 //------------TEMPELATE ENGINE:: EJS--------------------//
 //including css-static files(assets)
 app.use(express.static('assets'));

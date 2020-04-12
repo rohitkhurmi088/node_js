@@ -13,7 +13,9 @@ router.get('/profile', usersController.profile);
 ::NOTE:: use '/' here & use '/profile' in router->index.js ie main router for '/'
 */
 
-
+//_____signUp & signIn(FORM)routes__________________
+router.get('/sign-up', usersController.signUp);
+router.get('/sign-in', usersController.signIn);
 
 
 
