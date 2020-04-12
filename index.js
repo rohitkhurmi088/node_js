@@ -86,7 +86,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+/*setup current user usage
+:: Middleware in config-->passport-local-strategy.js 
+sets current user in the locals - acccessible in views */
+app.use(passport.setAuthenticatedUser);
 
 
 //__________RENDER EJS templates___________________

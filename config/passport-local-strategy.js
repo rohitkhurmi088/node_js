@@ -62,6 +62,39 @@ passport.deserializeUser(function(id, done){
 });
 
 
+//________Sending Data(user) of current user to Views(EJS Files)__________________
+/* passport.checkAuthentication: to check if user is authenticated (MIDDLEWARE)
+   req.isAuthenticated() :  user is authenticated
+   passport.setAuthenticatedUser : to pass on User data (user) to Views(EJS)(MIDDLEWARE)
+
+Whenever user is signed-in , that user’s information is available in req.users
+req.user: handled by passport : contains current signed-in user from session-cookies
+res.locals.user:  passed to  locals for the views  
+*/
+
+//check if user is authencated (middleware)
+passport.checkAuthentication = function(req,res,next){
+    /*to find authenticated user passport puts a method on req: req.isAuthenticated() */
+       
+       //check if user is signed-in(Authenticated)
+       if(req.isAuthenticated()){
+           //if user is signed in pass-on the req. to the next function(controllers, action)
+           return next();
+       }
+       //if user is not signed in redirect to the sign-in page
+       return res.redirect('/users/sign-in');
+}
+
+//if user is Authenticated::: SET The user for the VIEWS:::
+passport.setAuthenticatedUser = function(req,res,next){
+   if(req.isAuthenticated()){
+       //req.user: contains current signed-in user from session-cookies
+       //we are just sending it to the locals for the views
+       res.locals.user = req.user;
+   }
+   next();
+}
+
 //_________________________________________________________________________________________
 
 //Exporting passport module
