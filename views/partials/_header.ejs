@@ -1,3 +1,37 @@
 <header id="layout-header">
-    <p>page_header</p>
+    
+    <!--NAVBAR--------->
+    <nav>
+
+        <!--website-LOGO-->
+        <div class="mini-logo">
+            <p>
+                <a href='/'>codeial</a>
+            </p>
+        </div>
+
+        <!--Other Links in list form-->
+        <div class="auth-links">
+            <!-- if user is signed-in display SignOut link/button in header
+                else display signUp|signIn link/button on HomePage when user is signedOut-->
+            <ul>
+                <!-- locals.user = user (same) -->
+                <!-- if user is Signed-In ie localsuser part is present-->
+                <% if(locals.user){ %>
+                    <!--display user name as link to profile-->
+                    <a href="/users/profile">
+                        <li> <%= user.name %> </li>
+                    </a>
+                    <!--display Sign-out link-->
+                    <li> <a href="/users/sign-out">Sign Out</a> </li>
+                <% }else{ %>
+                    <li> <a href="/users/sign-in ">Sign In</a> </li>
+                    <li><a href="/users/sign-up ">Sign Up</a></li>
+                <% } %>
+            </ul>
+        </div>
+    
+    </nav>
+    <!--Navbar END------>
+
 </header>

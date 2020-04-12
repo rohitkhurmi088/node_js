@@ -40,5 +40,11 @@ router.post('/create-session', passport.authenticate(
 //‘local’ will contain ‘user’ If the user is signed-In (Authenticated)
 
 
+//__Destroy-session____(signOut (link in header) from profile)
+//action = '/users/sign-out' --> passed in the link/form of sign-out
+//here pass only /signout as this route follows the route in main route ie '/users'
+router.get('/sign-out', usersController.destroySession);
+
+
 //exporting router
 module.exports = router;

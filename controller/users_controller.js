@@ -93,6 +93,17 @@ module.exports.createSession = (req, res) => {
 };
 
 
+//________________________________________________________________________
+//SignOut user + destroySession() (Logout)
+//________________________________________________________________________
+module.exports.destroySession = (req, res) => {
+
+	//passport func req.logout();
+	//Removing user session cookie to remove user’s identity
+	req.logout();
+	//response: when user logout -->goto homePage
+	return res.redirect('/');
+};
 
 
 
@@ -100,3 +111,8 @@ module.exports.createSession = (req, res) => {
 
 //For Exporting Function
 //module.exports.actionName = func(req,res){}
+
+/* signup manual Auth
+   sign-in passportjs
+   sign-out passportjs
+*/
