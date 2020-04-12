@@ -26,6 +26,19 @@ require('events').EventEmitter.prototype._MaxListeners=0;
 
 //__________Middleware_______________________
 
+//:::::::: SASS MIDDLEWARE :::::::
+//Adding SASS: node-sass-middleware & use it just before server starts
+const sassMiddleware = require('node-sass-middleware');
+//Precompiling Scss-->Css
+app.use(sassMiddleware({
+    src:'./assets/scss',         //take file from
+    dest:'./assets/css',        //compile to destination
+    debug: true,              //information in terminal
+    outputStyle: 'extended', //multiple-lines
+    prefix: '/css'          //converted-file prefix:.css
+}));
+
+
 //main-middleware
 
 //body parser

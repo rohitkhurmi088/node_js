@@ -1,3 +1,25 @@
 <footer id="layout-footer">
-    <p>page_footer</p>
+
+    <div>
+        <p> &#169; Social Web. All Rights Reserved </p>
+    </div>
+
+    <div>
+        <nav class="footer-nav">
+            <ul>
+                <li> <a href="/">Home</a> </li>
+                <li> 
+                    <!-- if user is Authenticated: signed-in-->
+                    <%if(locals.user){%>
+                        <!--Goto profile page-->
+                        <a href="/users/profile">Profile</a> 
+                    <%}else{%>
+                        <!--Else make user to sign-in-->
+                        <a href="/users/sign-in">Profile</a> 
+                    <%}%>           
+               </li>
+            </ul>
+        </nav>
+    </div>
+
 </footer>
