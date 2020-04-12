@@ -16,6 +16,12 @@ module.exports.profile = ('/profile', (req,res)=>{
 
 //sign_in ACTION + make route for this
 module.exports.signIn = (req,res)=>{
+    //Authorization
+	//if user is signed-up always redirect to profile page
+	//using req.isAuthenticated()
+	if (req.isAuthenticated()) {
+		return res.redirect('/users/profile');
+	}
     return res.render('user_sign_in', {
 		title: 'Social | Login',
 	});
@@ -24,6 +30,13 @@ module.exports.signIn = (req,res)=>{
 
 //sign_Up Action + make route for this
 module.exports.signUp = (req,res)=>{
+    //Authorization
+	//if user is signed-In always redirect to profile page
+    //using req.isAuthenticated()
+    /*all routes after '/' user will redirect*/
+	if (req.isAuthenticated()) {
+		return res.redirect('/users/profile');
+	}
     return res.render('user_sign_up', {
 		title: 'Social | Register',
 	});        
@@ -74,7 +87,7 @@ module.exports.create = (req, res) => {
 //signIn existing user + create-session (Login)
 //________________________________________________________________________
 module.exports.createSession = (req, res) => {
-    
+
 	//redirect to Homepage
 	return res.redirect('/');
 };

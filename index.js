@@ -63,7 +63,7 @@ app.use(session({
     name:'social',
     // TO-DO change the secret before deployment in production mode
    //encryption key-code/decode
-    secret:'node_web',
+    secret:'social_node',
     saveUninitialized:false,
     resave:false,
     cookie:{
