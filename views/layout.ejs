@@ -1,0 +1,39 @@
+<!--layout.ejs file must me kept in views only-->
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!--favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/fv1.ico">
+    <title><%=locals.title%></title>
+
+     <!--Jquery-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    
+     <!--CSS FILES for header/footer/layout.ejs-->
+     <link rel="stylesheet" type="text/css" href="/css/layout.css">
+     <link rel="stylesheet" type="text/css" href="/css/_header.css">
+     <link rel="stylesheet" type="text/css" href="/css/_footer.css">
+
+     <!--Styles from other ejsfiles:home/profile-->
+    <%- style %>
+
+</head>
+<body>
+
+    <!--Header-->
+    <%- include('./partials/_header.ejs'); %>
+
+    <!--Main-Content-section-->
+    <main id="layout-main">
+        <%- body %> <!--other ejs files executes as body-->
+    </main>
+
+     <!--Footer-->
+     <%- include('./partials/_footer.ejs'); %>
+     
+    <!--Scriptsfrom other ejsfiles-->
+    <%- script %>
+
+</body>
+</html>
