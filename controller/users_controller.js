@@ -70,10 +70,42 @@ module.exports.create = (req, res) => {
 };
 //_____________________________________________________________________________
 
+//______________________________________________________________________________
+//_____________SIGN IN (STEPS TO Authenticate User - create session)___________
+//signIn existing user + create-session (Login)
+module.exports.createSession = (req,res)=>{
+
+    //find the user -by email(unique)
+    User.findOne({email:req.body.email}, (err,user)=>{
+        //if error
+        if(err){
+            console.log('error in finding user while signIn');
+            return
+        }
+        //if user found
+        if(user){
+            //handle if password not match to that in database(user.password)
+            if(user.password != req.body.password){
+                return res.redirect('back');
+            }
+            //:::LOGIN Successful:::
+            //handle session-creation + send login user to profile page
+            res.cookie('user_id', user.id); //set the cookie with user.id
+            return res.redirect('/users/profile'); //redirect to profile
+        }else{
+            // user not found ->handle user not found
+            //return back to signIn page
+            return res.redirect('back');
+        }
+    });
+};
+//_________________________________________________________________________
 
 
-
-
+//_____________SIGN OUT(destroy session)____________________________________
+module.exports.destroySession = (req,res)=>{
+    //do this
+};
 
 
 
